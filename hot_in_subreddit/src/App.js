@@ -1,5 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
+
+function ListItemLink(props) {
+  return (
+    props.map(item => {
+      return (
+      <ListItem button component="a" href={item.data.url}>
+        <ListItemText primary={item.data.title} />
+      </ListItem>
+      )
+    })
+  );
+}
 
 
 function App() {
@@ -18,7 +35,10 @@ function App() {
 
   return (
     <div>
-      {curListing.map(item => item.data.title)}
+      <List>
+        {ListItemLink(curListing)}
+      </List>
+      
     </div>
   );
 }
