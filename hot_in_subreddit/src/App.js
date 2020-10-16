@@ -1,85 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import IconButton from '@material-ui/core/IconButton';
+import React, { useState } from 'react';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
+import 'typeface-roboto';
+import InputForm from './components/InputForm';
+import PaginationBtns from './components/PaginationBtns';
+import HotPosts from './components/HotPosts';
 
-function ListItemLink(props) {
-  return (
-    props.map(item => {
-      return (
-      <ListItem button component="a" href={item.data.url}>
-        <ListItemText primary={item.data.title} />
-      </ListItem>
-      )
-    })
-  );
-}
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    margin: '20px auto',
+    maxWidth: 1000,
+  },
+}));
 
 function App() {
   const [curListing, changeCurListing] = useState({data: {children: []}});
-  const [page, changePage] = useState('');
 
-    async function getHotPosts(subreddit, params) {
-      const url = `https://www.reddit.com/r/${subreddit}/hot.json`;
-      
-      const resp = await fetch(url + params);
-      const data =  await resp.json();
-      changeCurListing(data);
-      changePage(data.data.after);
-      console.log(data.data.after);
-    }
-    
-
-  function inputSubreddit() {
-    const subreddit = document.querySelector('#subreddit');
-    console.log(subreddit.value);
-    getHotPosts(subreddit.value, '');
-    //changeCurListing(subreddit.value);
+  async function getHotPosts(subreddit, params) {
+    const url = `https://www.reddit.com/r/${subreddit}/hot.json`;
+    const resp = await fetch(url + params);
+    const data =  await resp.json();
+    changeCurListing(data);
   }
-
-  function nextListing() {
-    const subreddit = document.querySelector('#subreddit');
-    console.log(subreddit.value);
-    const params = `?after=${curListing.data.after}&count=25`;
-    getHotPosts(subreddit.value, params);
-  }
-
-  function prevListing() {
-    const subreddit = document.querySelector('#subreddit');
-    console.log(subreddit.value);
-    const params = `?before=${curListing.data.before}&count=25`;
-    getHotPosts(subreddit.value, params);
-  }
+  
+  const classes = useStyles();
 
   return (
-    <div>
-       <TextField id="subreddit" label="Subreddit" />
-       <Button variant="contained" onClick={inputSubreddit}>Show hot</Button>
-
-       <label htmlFor="icon-button-file">
-          <IconButton color="primary" aria-label="upload picture" component="span">
-            <ArrowBackIosIcon onClick={prevListing}/>
-          </IconButton>
-        </label>
-
-        <label htmlFor="icon-button-file">
-          <IconButton color="primary" aria-label="upload picture" component="span">
-            <ArrowForwardIosIcon onClick={nextListing}/>
-          </IconButton>
-        </label>
-       
-      <List>
-        {ListItemLink(curListing.data.children)}
-      </List>
-      
+    <div className={classes.root}>
+      <Paper elevation={3}>
+        <InputForm getHotPosts={getHotPosts}/>
+        <PaginationBtns getHotPosts={getHotPosts} curListing={curListing}/>
+        <HotPosts curListing={curListing}/>
+      </Paper>
     </div>
   );
 }
