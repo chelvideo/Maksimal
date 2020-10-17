@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 function inputSubreddit(props) {
     const subreddit = document.querySelector('#subreddit');
+    props.setIsLoading(true);
     props.getHotPosts(subreddit.value, '');
 }
 
