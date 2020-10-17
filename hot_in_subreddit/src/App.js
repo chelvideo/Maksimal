@@ -13,38 +13,38 @@ const useStyles = makeStyles(() => ({
 }));
 
 function App() {
-  const emptyListing = {data: {children: []}};
+  const emptyListing = { data: { children: [] } };
   const [curListing, changeCurListing] = useState(emptyListing);
   const [isLoading, setIsLoading] = useState(false);
 
   async function getHotPosts(subreddit, params) {
     const url = `https://www.reddit.com/r/${subreddit}/hot.json`;
-      const resp = await fetch(url + params);
-      if (resp.status === 200)  {
-        const data =  await resp.json();
-        changeCurListing(data);
-      } else {
-        changeCurListing(emptyListing);
-      }
-      setIsLoading(false);
-  } 
-  
+    const resp = await fetch(url + params);
+    if (resp.status === 200) {
+      const data = await resp.json();
+      changeCurListing(data);
+    } else {
+      changeCurListing(emptyListing);
+    }
+    setIsLoading(false);
+  }
+
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper elevation={3}>
-        <InputForm 
-          getHotPosts={getHotPosts} 
-          setIsLoading={setIsLoading} 
+        <InputForm
+          getHotPosts={getHotPosts}
+          setIsLoading={setIsLoading}
         />
-        <PaginationBtns 
-          getHotPosts={getHotPosts} 
-          curListing={curListing} 
+        <PaginationBtns
+          getHotPosts={getHotPosts}
+          curListing={curListing}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
         />
-        <HotPosts curListing={curListing}/>
+        <HotPosts curListing={curListing} />
       </Paper>
     </div>
   );
