@@ -1,4 +1,8 @@
-h1 {
-    color: #27aedb;
-    text-align: center;
+.form-cards {
+    width: 60%;
+    height: 60%;
+    margin: auto;
+    background-color: #494949;
+    border-radius: 2rem;
 }
+
