@@ -1,7 +1,10 @@
 .form-cards {
-    width: 60%;
+    width: 40%;
     height: 60%;
     margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #494949;
     border-radius: 2rem;
 }
