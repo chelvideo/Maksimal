@@ -5,8 +5,8 @@ const initialState = {
         {
             cardId: 0,
             cardName: 'Ivan Ivanov',
-            cardAccount: '424242424242424242',
-            cardExpiried: '0422',
+            cardNumber: '424242424242424242',
+            cardExpiry: '0422',
             cardCVV: '111'
         }
     ]

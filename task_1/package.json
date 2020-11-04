@@ -4,7 +4,7 @@
   "description": "form with card",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode development --watch",
+    "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
     "buildDev": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +21,8 @@
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.3.2",
-    "webpack-cli": "^4.1.0"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "react": "^17.0.1",

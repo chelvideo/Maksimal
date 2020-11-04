@@ -23,7 +23,6 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        include: './src/assets/',
         use: [
           {
             loader: 'file-loader',
