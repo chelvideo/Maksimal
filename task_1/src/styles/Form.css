@@ -54,3 +54,7 @@
 .btn__save:hover {
     cursor: pointer;
 }
+
+.form__number:invalid {
+    border:1px solid red;
+}

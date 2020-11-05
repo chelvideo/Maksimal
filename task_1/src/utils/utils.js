@@ -1,11 +1,9 @@
 function checkLuhn(value) {
-    // remove all non digit characters
-    var value = value.replace(/\D/g, '');
-    var sum = 0;
-    var shouldDouble = false;
-    // loop through values starting at the rightmost side
-    for (var i = value.length - 1; i >= 0; i--) {
-      var digit = parseInt(value.charAt(i));
+    const valueStr = String(value);
+    let sum = 0;
+    let shouldDouble = false;
+    for (let i = valueStr.length - 1; i >= 0; i--) {
+      let digit = parseInt(valueStr.charAt(i));
       
       if (shouldDouble) {
         if ((digit *= 2) > 9) digit -= 9;

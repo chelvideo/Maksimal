@@ -73,3 +73,23 @@
     top:100px;
 }
 
+
+.fourth-line {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    background: #555861;
+    text-align: right;
+}
+
+.fourth-line__label {
+    font-size: 0.7rem;
+    color: #a2a5ae;
+    margin-right: 20%;
+}
+
+.fourth-line__cvv {
+    margin-right: 20%;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}

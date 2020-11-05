@@ -46,7 +46,7 @@ function PreviewCard(props) {
             <div className="card-preview__back">
                 <div className="fourth-line">
                     <div className="fourth-line__label">CVV</div>
-                    <div className="fourth-line__cvv"></div>
+                    <div className="fourth-line__cvv">{cards[activeCardId].cardCVV}</div>
                 </div>    
             </div>
         </div>

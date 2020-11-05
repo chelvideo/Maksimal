@@ -60,7 +60,7 @@ function Form(props) {
                     </label>
                 </div>
                 <div className="btn">
-                    <button className="btn__save">Save</button>
+                    <button className="btn__save" type="submit">SAVE</button>
                 </div>
             </form>
         </div>
@@ -80,7 +80,12 @@ function mapDispatchToProps(dispatch ) {
         save: (e) => {
             e.preventDefault();
             const formData =new FormData(document.forms.cardDetail);
+            const inputNumber = document.querySelector('.form__number');
             console.log(checkLuhn(formData.get("number")));
+            if (!checkLuhn(formData.get("number"))) {
+                inputNumber.setCustomValidity("Not valid card!")
+                //return null;
+            } else {inputNumber.setCustomValidity("")};
 
             const newCard = {
                 cardName: formData.get("name"),
