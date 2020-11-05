@@ -19,6 +19,7 @@ const numberToStr = (str) => {
 function PreviewCard(props) {
     //console.log(props);
     const {cardsCount, activeCardId, cards} = props;
+    const expiryToStr = `${cards[activeCardId].cardExpiry.slice(0,2)}/${cards[activeCardId].cardExpiry.slice(2)}`;
     
     return (
         <div className="card-preview">
@@ -31,11 +32,11 @@ function PreviewCard(props) {
                     {numberToStr(cards[activeCardId].cardNumber)}
                 </div>
                 <div className="third-line">
-                    <div className="third-line__name" key={Math.random()}>
+                    <div className="third-line__name">
                         {cards[activeCardId].cardName}
                     </div>
                     <div className="third-line__expiry">
-                        {cards[activeCardId].cardExpiry}
+                        {expiryToStr}
                     </div>
                     <div className="third-line__logo">
                         <img className="third-line__logo-visa" src={visaImg}></img>

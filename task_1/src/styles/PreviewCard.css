@@ -37,6 +37,7 @@
     margin: 5% auto 0;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .second-line span {
@@ -50,6 +51,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.8rem;
+    overflow: hidden;
 }
 
 .third-line__logo-visa {
