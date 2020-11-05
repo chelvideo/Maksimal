@@ -2,10 +2,9 @@ function reducer(state, action) {
     //console.log(action);
     switch(action.type) {
         case 'SAVE_CARD': 
-            const newCards = state.cards;
+            const newCards = state.cards.slice();
             newCards[state.activeCardId] = action.cards;
             newCards[state.activeCardId].cardId = state.activeCardId;
-            console.log(newCards);
 
             return {
                 ...state,
@@ -16,6 +15,24 @@ function reducer(state, action) {
             return {
                 ...state,
                 activeCardId: action.activeCardId,
+            };
+
+        case 'ADD_CARD':
+            const newCardsAdd = state.cards.slice();
+            newCardsAdd.push({
+                cardId: state.cardsCount,
+                cardName: '',
+                cardNumber: '',
+                cardExpiry: '',
+                cardCVV: ''
+            })
+
+            return {
+                ...state,
+                cardsCount: state.cardsCount + 1,
+                activeCardId: state.cardsCount,
+                cards:  newCardsAdd,
+                isMaxCount: (state.cardsCount + 1 == 6) ? true : false,
             };
         
         default: return state;

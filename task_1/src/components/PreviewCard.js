@@ -31,7 +31,7 @@ function PreviewCard(props) {
                     {numberToStr(cards[activeCardId].cardNumber)}
                 </div>
                 <div className="third-line">
-                    <div className="third-line__name">
+                    <div className="third-line__name" key={Math.random()}>
                         {cards[activeCardId].cardName}
                     </div>
                     <div className="third-line__expiry">

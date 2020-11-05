@@ -1,5 +1,6 @@
 const initialState = {
-    cardsCount: 1,
+    cardsCount: 3,
+    isMaxCount: false,
     activeCardId: 0,
     cards: [
         {

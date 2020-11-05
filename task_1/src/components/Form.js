@@ -47,14 +47,14 @@ function mapDispatchToProps(dispatch ) {
             e.preventDefault();
             const formData =new FormData(document.forms.cardDetail);
 
-            const cards = {
+            const newCard = {
                 cardName: formData.get("name"),
                 cardNumber: formData.get("number"),
                 cardExpiry: formData.get("expiry"),
                 cardCVV: formData.get("cvv")
             };
             
-            dispatch(saveCard({cards: cards}))
+            dispatch(saveCard({cards: newCard}))
         },
     }
 }
