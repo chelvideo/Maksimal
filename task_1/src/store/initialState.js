@@ -1,5 +1,5 @@
 const initialState = {
-    cardsCount: 3,
+    cardsCount: 1,
     isMaxCount: false,
     activeCardId: 0,
     cards: [
@@ -10,20 +10,6 @@ const initialState = {
             cardExpiry: '0422',
             cardCVV: '111'
         },
-        {
-            cardId: 1,
-            cardName: 'John Smith',
-            cardNumber: '1111222233334444',
-            cardExpiry: '0125',
-            cardCVV: '111'
-        },
-        {
-            cardId: 2,
-            cardName: 'V Putin',
-            cardNumber: '0000000000000000',
-            cardExpiry: '0422',
-            cardCVV: '111'
-        }
     ]
 };
 

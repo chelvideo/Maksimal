@@ -8,7 +8,7 @@ function EditCard(props) {
     
     return (
         <div className="card-edit">
-            <CardsBar />            
+            <CardsBar save={props.save}/>            
             <Form />
         </div>
     );
@@ -24,6 +24,7 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch ) {
     return {
+        save: () => console.log(111),
     }
 }
 

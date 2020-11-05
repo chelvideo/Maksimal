@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import saveCard from '../store/actionsCreators/saveCard';
 import '../styles/Form.css';
+import checkLuhn from '../utils/utils';
 
 function Form(props) {
     const {activeCardId, cards, save} = props;
@@ -79,6 +80,7 @@ function mapDispatchToProps(dispatch ) {
         save: (e) => {
             e.preventDefault();
             const formData =new FormData(document.forms.cardDetail);
+            console.log(checkLuhn(formData.get("number")));
 
             const newCard = {
                 cardName: formData.get("name"),
@@ -86,7 +88,7 @@ function mapDispatchToProps(dispatch ) {
                 cardExpiry: formData.get("expiry").replace(/\//g, ""),
                 cardCVV: formData.get("cvv")
             };
-            
+            //console.log(newCard);
             dispatch(saveCard({cards: newCard}))
         },
     }

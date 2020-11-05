@@ -21,10 +21,10 @@ function reducer(state, action) {
             const newCardsAdd = state.cards.slice();
             newCardsAdd.push({
                 cardId: state.cardsCount,
-                cardName: '',
-                cardNumber: '',
-                cardExpiry: '',
-                cardCVV: ''
+                cardName: 'Donald Trump',
+                cardNumber: '1111222233334444',
+                cardExpiry: '0122',
+                cardCVV: '111'
             })
 
             return {

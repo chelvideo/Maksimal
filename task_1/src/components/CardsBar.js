@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import addCard from '../store/actionsCreators/addCard';
+import saveCard from '../store/actionsCreators/saveCard';
 import iconCardClick from '../store/actionsCreators/iconCardClick';
 import '../styles/CardsBar.css';
 
@@ -48,7 +49,8 @@ function mapDispatchToProps(dispatch) {
             dispatch(iconCardClick({activeCardId:e.target.id}))
         },
         addCard: () => {
-            dispatch(addCard())
+            const formData =new FormData(document.forms.cardDetail);
+            dispatch(addCard());
         }
     }
 }
