@@ -1,16 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import saveCard from '../store/actionsCreators/saveCard';
+import previewCard from '../store/actionsCreators/previewCard';
 import '../styles/Form.css';
 import checkLuhn from '../utils/utils';
 
 function Form(props) {
-    const {activeCardId, cards, save} = props;
-    const expiryToStr = `${cards[activeCardId].cardExpiry.slice(0,2)}/${cards[activeCardId].cardExpiry.slice(2)}`;
-    const numberPattern = '[0-9]{13,19}';
-    const namePattern = '[A-Za-z- ]{1,}[- ]{1}[A-Za-z- ]{1,}';
+    const {activeCardId, cards, save, preview, previewName, previewNumber, previewExpiry, previewCVV} = props;
+    
+    const numberPattern = '[0-9 ]{19,27}';
+    const namePattern = '[A-Za-z- .]{1,}[- ]{1}[A-Za-z- .]{1,}';
     const expiryPattern = '[0-9]{2}[\/]{0,1}[0-9]{2}';
     const cvvPattern = '[0-9]{3,4}';
+
+    const expiryToStr = () => {
+        return (previewExpiry ? `${previewExpiry.slice(0,2)}/${previewExpiry.slice(2)}` : '')
+    };
+
+    const previewNumberToStr = () => {
+        const res = previewNumber
+                        .split('')
+                        .reduce((prev, item, index) => {
+                            if ((index+1) % 4 == 0) return prev = prev + item + '  '; 
+                            return prev = prev + item; 
+                        }, '');  
+        console.log(res);
+        return res;
+    }
     
     return (
         <div className="form">
@@ -19,10 +35,13 @@ function Form(props) {
                 <label className="form__label">Name of Card
                     <input 
                         className="input form__name" 
-                        type="text" name="name" 
+                        type="text" 
+                        name="name"
+                        onInput={preview} 
                         key={cards[activeCardId].cardId} 
-                        defaultValue={cards[activeCardId].cardName} 
+                        value={previewName} 
                         autoComplete="off"
+                        placeholder="***"
                         pattern={namePattern}
                         required />
                 </label>
@@ -31,20 +50,23 @@ function Form(props) {
                         className="input form__number" 
                         type="text" 
                         name="number" 
+                        onInput={preview} 
                         key={cards[activeCardId].cardId} 
-                        defaultValue={cards[activeCardId].cardNumber} 
+                        value={previewNumberToStr()} 
                         autoComplete="off" 
+                        placeholder="***"
                         pattern={numberPattern}
-                        onInput={onInput}
                         required />
                 </label>
                 <div className="form__line">
                     <label className="form__label">Expiry Date
                         <input className="input form__expiry" 
-                            type="text" name="expiry" 
-                            key={Math.random()} 
-                            defaultValue={expiryToStr} 
+                            type="text" 
+                            name="expiry" 
+                            onInput={preview} 
+                            value={expiryToStr()} 
                             autoComplete="off" 
+                            placeholder="***"
                             pattern={expiryPattern}
                             required />
                     </label>
@@ -53,8 +75,10 @@ function Form(props) {
                             className="input form__cvv" 
                             type="password" 
                             name="cvv" 
-                            defaultValue={cards[activeCardId].cardCVV}
+                            onInput={preview} 
+                            value={previewCVV}
                             autoComplete="off" 
+                            placeholder="***"
                             pattern={cvvPattern}
                             required />
                     </label>
@@ -67,16 +91,15 @@ function Form(props) {
     );
 }
 
-const onInput = () => {
-    const inputNumber = document.querySelector('.form__number');
-    inputNumber.setCustomValidity("");
-}
-
 function mapStateToProps(store) {
     return {
         cardsCount: store.cardsCount,
         activeCardId: store.activeCardId,
-        cards: store.cards
+        cards: store.cards,
+        previewName: store.previewName,
+        previewNumber: store.previewNumber,
+        previewExpiry: store.previewExpiry,
+        previewCVV: store.previewCVV,
     }
 }
 
@@ -86,18 +109,33 @@ function mapDispatchToProps(dispatch ) {
             e.preventDefault();
             const formData =new FormData(document.forms.cardDetail);
             const inputNumber = document.querySelector('.form__number');
+            /*
             if (!checkLuhn(formData.get("number"))) {
                 inputNumber.setCustomValidity("Not valid card!");
                 return null;
             }
-
+            */
             const newCard = {
                 cardName: formData.get("name"),
-                cardNumber: formData.get("number"),
+                cardNumber: formData.get("number").replace(/\ /g, ""),
                 cardExpiry: formData.get("expiry").replace(/\//g, ""),
                 cardCVV: formData.get("cvv")
             };
             dispatch(saveCard({cards: newCard}))
+        },
+
+        preview: () => {
+            const inputNumber = document.querySelector('.form__number');
+            inputNumber.setCustomValidity("");
+
+            const formData =new FormData(document.forms.cardDetail);
+            const newDetail = {
+                previewName: formData.get("name"),
+                previewNumber: formData.get("number").replace(/\ /g, ""),
+                previewExpiry: formData.get("expiry").replace(/\//g, ""),
+                previewCVV: formData.get("cvv")
+            };
+            dispatch(previewCard(newDetail))
         },
     }
 }

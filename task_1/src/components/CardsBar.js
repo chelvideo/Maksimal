@@ -4,7 +4,7 @@ import addCard from '../store/actionsCreators/addCard';
 import iconCardClick from '../store/actionsCreators/iconCardClick';
 import '../styles/CardsBar.css';
 
-const backgound = (color) => {
+const background = (color) => {
     return ({
         background: color
     })
@@ -16,7 +16,7 @@ function cardIcon(cards, cardClick, activeCardId) {
             return (
                 <div 
                     className="card-icon"
-                    style={backgound(cards[card.cardId].cardImg)}
+                    style={background(cards[card.cardId].cardImg)}
                     key={card.cardId}
                     id={card.cardId}
                     onClick={cardClick}>
@@ -50,6 +50,7 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
     return {
         cardClick: (e) => {
+            console.log(e.target.id);
             dispatch(iconCardClick({activeCardId:e.target.id}))
         },
         addCard: () => {

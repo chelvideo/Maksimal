@@ -1,6 +1,6 @@
 .card-preview {
     width: 40%;
-    height: 40%;
+    height: 30%;
     margin-left: 5%;
     position: relative;
 }
@@ -18,7 +18,7 @@
 
 .first-line {
     width: 80%;
-    margin: 25% auto 0;
+    margin: 15% auto 0;
     display: flex;
     align-items: center;
 }
@@ -42,12 +42,13 @@
 
 .second-line span {
     font-weight: bold;
+    font-size: 1.2rem;
     letter-spacing: 1px;
 }
 
 .third-line {
     width: 80%;
-    margin: 15% auto 0;
+    margin: 10% auto 0;
     display: flex;
     justify-content: space-between;
     font-size: 0.8rem;
@@ -55,7 +56,7 @@
 }
 
 .third-line__logo-visa {
-    width: 80px;
+    width: 65px;
 }
 
 .card-preview__back {

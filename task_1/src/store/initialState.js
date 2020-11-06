@@ -5,13 +5,17 @@ const initialState = {
     cards: [
         {
             cardId: 0,
-            cardName: 'Ivan Ivanov',
-            cardNumber: '424242424242424242',
-            cardExpiry: '0422',
-            cardCVV: '111',
+            cardName: '',
+            cardNumber: '',
+            cardExpiry: '',
+            cardCVV: '',
             cardImg: '#fd435b',
         },
-    ]
+    ],
+    previewName: '',
+    previewNumber: '',
+    previewExpiry: '',
+    previewCVV: '',
 };
 
 export default initialState;
