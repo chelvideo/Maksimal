@@ -1,5 +1,6 @@
 .form {
     margin: 5%;
+    margin-top: 50px;
 }
 
 .form__title {
@@ -43,18 +44,23 @@
 }
 
 .btn__save {
-    width: 50%;
+    width: 60%;
+    height: 35px;
     height: 2rem;
     color: #FFF;
     background-color: #fd435b;
     border-radius: 1rem;
+    border: none;
     outline: none;
 }
 
 .btn__save:hover {
     cursor: pointer;
+    background-color: #e96a7b;
+    transform: scale(1.1);
+    transition: all 0.5 ease-in-out;
 }
 
-.form__number:invalid {
-    border:1px solid red;
+.form__number:invalid, .form__name:invalid, .form__expiry:invalid, .form__cvv:invalid {
+    border-bottom: 1px solid red;
 }

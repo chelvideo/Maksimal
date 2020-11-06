@@ -8,7 +8,8 @@ const initialState = {
             cardName: 'Ivan Ivanov',
             cardNumber: '424242424242424242',
             cardExpiry: '0422',
-            cardCVV: '111'
+            cardCVV: '111',
+            cardImg: '#fd435b',
         },
     ]
 };

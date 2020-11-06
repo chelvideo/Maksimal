@@ -1,6 +1,8 @@
 .form-cards {
     width: 40%;
     height: 60%;
+    min-height: 500px;
+    min-width: 700px;
     margin: auto;
     display: flex;
     justify-content: space-between;

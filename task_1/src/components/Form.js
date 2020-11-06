@@ -6,7 +6,6 @@ import checkLuhn from '../utils/utils';
 
 function Form(props) {
     const {activeCardId, cards, save} = props;
-    //console.log(cards[activeCardId].cardName);
     const expiryToStr = `${cards[activeCardId].cardExpiry.slice(0,2)}/${cards[activeCardId].cardExpiry.slice(2)}`;
     const numberPattern = '[0-9]{13,19}';
     const namePattern = '[A-Za-z- ]{1,}[- ]{1}[A-Za-z- ]{1,}';
@@ -36,6 +35,7 @@ function Form(props) {
                         defaultValue={cards[activeCardId].cardNumber} 
                         autoComplete="off" 
                         pattern={numberPattern}
+                        onInput={onInput}
                         required />
                 </label>
                 <div className="form__line">
@@ -67,6 +67,11 @@ function Form(props) {
     );
 }
 
+const onInput = () => {
+    const inputNumber = document.querySelector('.form__number');
+    inputNumber.setCustomValidity("");
+}
+
 function mapStateToProps(store) {
     return {
         cardsCount: store.cardsCount,
@@ -81,11 +86,10 @@ function mapDispatchToProps(dispatch ) {
             e.preventDefault();
             const formData =new FormData(document.forms.cardDetail);
             const inputNumber = document.querySelector('.form__number');
-            console.log(checkLuhn(formData.get("number")));
             if (!checkLuhn(formData.get("number"))) {
-                inputNumber.setCustomValidity("Not valid card!")
-                //return null;
-            } else {inputNumber.setCustomValidity("")};
+                inputNumber.setCustomValidity("Not valid card!");
+                return null;
+            }
 
             const newCard = {
                 cardName: formData.get("name"),
@@ -93,7 +97,6 @@ function mapDispatchToProps(dispatch ) {
                 cardExpiry: formData.get("expiry").replace(/\//g, ""),
                 cardCVV: formData.get("cvv")
             };
-            //console.log(newCard);
             dispatch(saveCard({cards: newCard}))
         },
     }

@@ -1,7 +1,6 @@
 import {SAVE_CARD} from '../actions/actions';
 
 function saveCard(cardDetail) {
-    //console.log(cardDetail);
     return { 
         type: SAVE_CARD, 
         cards: cardDetail.cards,

@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import addCard from '../store/actionsCreators/addCard';
-import saveCard from '../store/actionsCreators/saveCard';
 import iconCardClick from '../store/actionsCreators/iconCardClick';
 import '../styles/CardsBar.css';
 
-function cardIcon(cards, cardClick) {
+const backgound = (color) => {
+    return ({
+        background: color
+    })
+}
+
+function cardIcon(cards, cardClick, activeCardId) {
     return (
         cards.map(card => { 
             return (
                 <div 
                     className="card-icon"
+                    style={backgound(cards[card.cardId].cardImg)}
                     key={card.cardId}
                     id={card.cardId}
                     onClick={cardClick}>
@@ -26,7 +32,7 @@ function CardsBar(props) {
     return (
         <div className="cards-bar">
             <div className="cards-bar__icon">
-                { cardIcon(cards, cardClick) }
+                { cardIcon(cards, cardClick, activeCardId) }
             </div>
             <button className="cards-bar__btn" onClick={addCard} disabled={isMaxCount}>+</button>
         </div> 
@@ -35,7 +41,6 @@ function CardsBar(props) {
 
 function mapStateToProps(store) {
     return {
-        cardsCount: store.cardsCount,
         activeCardId: store.activeCardId,
         cards: store.cards,
         isMaxCount: store.isMaxCount
@@ -45,11 +50,9 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
     return {
         cardClick: (e) => {
-            //console.log(e.target.id);
             dispatch(iconCardClick({activeCardId:e.target.id}))
         },
         addCard: () => {
-            const formData =new FormData(document.forms.cardDetail);
             dispatch(addCard());
         }
     }

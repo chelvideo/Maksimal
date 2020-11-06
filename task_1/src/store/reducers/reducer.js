@@ -1,5 +1,16 @@
+// New card template
+const cardDetailNew = (cardsCount) => {
+    return {
+        cardId: cardsCount,
+        cardName: 'Donald Trump',
+        cardNumber: '1111222233334444',
+        cardExpiry: '1120',
+        cardCVV: '001', 
+        cardImg: '#' + (Math.random().toString(16) + "000000").substring(2,8),
+    }
+};
+
 function reducer(state, action) {
-    //console.log(action);
     switch(action.type) {
         case 'SAVE_CARD': 
             const newCards = state.cards.slice();
@@ -19,14 +30,7 @@ function reducer(state, action) {
 
         case 'ADD_CARD':
             const newCardsAdd = state.cards.slice();
-            newCardsAdd.push({
-                cardId: state.cardsCount,
-                cardName: 'Donald Trump',
-                cardNumber: '1111222233334444',
-                cardExpiry: '0122',
-                cardCVV: '111'
-            })
-
+            newCardsAdd.push(cardDetailNew(state.cardsCount))
             return {
                 ...state,
                 cardsCount: state.cardsCount + 1,

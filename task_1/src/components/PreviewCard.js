@@ -16,14 +16,19 @@ const numberToStr = (str) => {
     )
 } 
 
+const backgound = (color) => {
+    return ({
+        background: color
+    })
+}
+
 function PreviewCard(props) {
-    //console.log(props);
-    const {cardsCount, activeCardId, cards} = props;
+    const {activeCardId, cards, cardImg} = props;
     const expiryToStr = `${cards[activeCardId].cardExpiry.slice(0,2)}/${cards[activeCardId].cardExpiry.slice(2)}`;
-    
+
     return (
         <div className="card-preview">
-            <div className="card-preview__front">
+            <div className="card-preview__front" style={backgound(cards[activeCardId].cardImg)}>
                 <div className="first-line">
                     <img className="first-line__chip" src={chipImg}></img>
                     <img className="first-line__nfc" src={nfcImg}></img>
@@ -55,9 +60,8 @@ function PreviewCard(props) {
 
 function mapStateToProps (store) {
     return {
-        cardsCount: store.cardsCount,
         activeCardId: store.activeCardId,
-        cards: store.cards
+        cards: store.cards,
     }
 }
 
