@@ -37,14 +37,12 @@
     color: #FFF;
     background: transparent;
     border: none;
-    transition: all 0.3 ease-in-out;
     outline: none;
 }
 
 .cards-bar__btn:hover  {
     cursor: pointer;
     transform: scale(1.2);
-    transition: all 0.5 ease-in-out;
 }
 
 .cards-bar__btn:disabled {

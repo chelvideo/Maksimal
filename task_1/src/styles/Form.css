@@ -51,15 +51,16 @@
     border-radius: 1rem;
     border: none;
     outline: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .btn__save:hover {
     cursor: pointer;
     background-color: #e96a7b;
-    transform: scale(1.1);
-    transition: all 0.5 ease-in-out;
+    transform: scale(1.05);
+    
 }
 
 .form__number:invalid, .form__name:invalid, .form__expiry:invalid, .form__cvv:invalid {
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid transparent;
 }

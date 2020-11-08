@@ -12,7 +12,7 @@ const numberToStr = (str) => {
             <span>{str.slice(4,8)}</span>
             <span>{str.slice(8,12)}</span>
             <span>{str.slice(12,16)}</span>
-            <span>{str.slice(16)}</span> 
+            <span>{str.slice(16)}</span>
         </Fragment>
     )
 } 
@@ -35,14 +35,14 @@ function PreviewCard(props) {
                     <img className="first-line__nfc" src={nfcImg}></img>
                 </div>
                 <div className="second-line">
-                    {numberToStr(previewNumber)}
+                    {previewNumber ? numberToStr(previewNumber) : '***'}
                 </div>
                 <div className="third-line">
                     <div className="third-line__name">
-                        {previewName}
+                        {previewName ? previewName : '***'}
                     </div>
                     <div className="third-line__expiry">
-                        {expiryToStr}
+                        {expiryToStr ? expiryToStr : '**/**'}
                     </div>
                     <div className="third-line__logo">
                         <img className="third-line__logo-visa" src={visaImg}></img>
@@ -52,7 +52,7 @@ function PreviewCard(props) {
             <div className="card-preview__back">
                 <div className="fourth-line">
                     <div className="fourth-line__label">CVV</div>
-                    <div className="fourth-line__cvv">{previewCVV}</div>
+                    <div className="fourth-line__cvv">{previewCVV ? previewCVV : '***'}</div>
                 </div>    
             </div>
         </div>

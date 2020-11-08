@@ -1,6 +1,6 @@
 import React from 'react';
 import PreviewCard from './PreviewCard'; 
-import EdidCard from './EditCard';
+import EditCard from './EditCard';
 import '../styles/App.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     return (
         <div className="form-cards">
             <PreviewCard />
-            <EdidCard />   
+            <EditCard />   
         </div>
     );
 }

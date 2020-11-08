@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import addCard from '../store/actionsCreators/addCard';
 import iconCardClick from '../store/actionsCreators/iconCardClick';
 import '../styles/CardsBar.css';
+import card_icon from '../assets/card_icon.png';
 
 const background = (color) => {
     return ({
@@ -20,6 +21,7 @@ function cardIcon(cards, cardClick, activeCardId) {
                     key={card.cardId}
                     id={card.cardId}
                     onClick={cardClick}>
+                    <img src={card_icon} alt="icon" width="40"></img>
                 </div>
             )
         })
@@ -50,8 +52,7 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
     return {
         cardClick: (e) => {
-            console.log(e.target.id);
-            dispatch(iconCardClick({activeCardId:e.target.id}))
+            dispatch(iconCardClick({activeCardId:e.currentTarget.id}))
         },
         addCard: () => {
             dispatch(addCard());

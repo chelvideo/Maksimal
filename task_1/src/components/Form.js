@@ -7,14 +7,18 @@ import checkLuhn from '../utils/utils';
 
 function Form(props) {
     const {activeCardId, cards, save, preview, previewName, previewNumber, previewExpiry, previewCVV} = props;
-    
+
     const numberPattern = '[0-9 ]{19,27}';
     const namePattern = '[A-Za-z- .]{1,}[- ]{1}[A-Za-z- .]{1,}';
     const expiryPattern = '[0-9]{2}[\/]{0,1}[0-9]{2}';
     const cvvPattern = '[0-9]{3,4}';
 
     const expiryToStr = () => {
-        return (previewExpiry ? `${previewExpiry.slice(0,2)}/${previewExpiry.slice(2)}` : '')
+        if (previewExpiry.length > 2) { 
+            return `${previewExpiry.slice(0,2)}/${previewExpiry.slice(2)}`;
+        } else {
+            return (previewExpiry ? `${previewExpiry.slice(0,2)}` : '')
+        }
     };
 
     const previewNumberToStr = () => {
@@ -24,10 +28,9 @@ function Form(props) {
                             if ((index+1) % 4 == 0) return prev = prev + item + '  '; 
                             return prev = prev + item; 
                         }, '');  
-        console.log(res);
-        return res;
+        return res.slice(-1)==' ' ? res.slice(0, -2) : res;
     }
-    
+
     return (
         <div className="form">
             <h2 className="form__title">Card detail</h2>
@@ -66,7 +69,7 @@ function Form(props) {
                             onInput={preview} 
                             value={expiryToStr()} 
                             autoComplete="off" 
-                            placeholder="***"
+                            placeholder="**/**"
                             pattern={expiryPattern}
                             required />
                     </label>
@@ -108,13 +111,6 @@ function mapDispatchToProps(dispatch ) {
         save: (e) => {
             e.preventDefault();
             const formData =new FormData(document.forms.cardDetail);
-            const inputNumber = document.querySelector('.form__number');
-            /*
-            if (!checkLuhn(formData.get("number"))) {
-                inputNumber.setCustomValidity("Not valid card!");
-                return null;
-            }
-            */
             const newCard = {
                 cardName: formData.get("name"),
                 cardNumber: formData.get("number").replace(/\ /g, ""),
@@ -124,11 +120,16 @@ function mapDispatchToProps(dispatch ) {
             dispatch(saveCard({cards: newCard}))
         },
 
-        preview: () => {
-            const inputNumber = document.querySelector('.form__number');
-            inputNumber.setCustomValidity("");
-
+        preview: (e) => {
             const formData =new FormData(document.forms.cardDetail);
+            const inputNumber = document.querySelector('.form__number');
+            const card = formData.get("number").replace(/\ /g, "");
+            if (card.length>=13 && !checkLuhn(card)) {
+                inputNumber.setCustomValidity("Not valid card!");
+            } else {
+                inputNumber.setCustomValidity("");
+            }
+            
             const newDetail = {
                 previewName: formData.get("name"),
                 previewNumber: formData.get("number").replace(/\ /g, ""),

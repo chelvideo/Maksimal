@@ -1,6 +1,6 @@
 .card-preview {
     width: 40%;
-    height: 30%;
+    height: 31%;
     margin-left: 5%;
     position: relative;
 }
@@ -17,7 +17,7 @@
 }
 
 .first-line {
-    width: 80%;
+    width: 85%;
     margin: 15% auto 0;
     display: flex;
     align-items: center;
@@ -33,30 +33,37 @@
 }
 
 .second-line {
-    width: 80%;
+    width: 85%;
     margin: 5% auto 0;
     display: flex;
-    justify-content: space-between;
     overflow: hidden;
+    line-height: 1.2rem;
 }
 
 .second-line span {
+    margin-right: 8px;
     font-weight: bold;
     font-size: 1.2rem;
     letter-spacing: 1px;
 }
 
 .third-line {
-    width: 80%;
-    margin: 10% auto 0;
+    width: 85%;
+    margin: 8% auto 0;
     display: flex;
     justify-content: space-between;
     font-size: 0.8rem;
     overflow: hidden;
 }
 
+.third-line__name {
+    flex-grow: 2;
+    overflow: hidden;
+}
+
 .third-line__logo-visa {
     width: 65px;
+    margin-left: 5px;
 }
 
 .card-preview__back {
