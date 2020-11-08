@@ -4,13 +4,12 @@ import CardsBar from './CardsBar';
 import Form from './Form';
 
 function EditCard(props) {
-    
-    return (
-        <div className="card-edit">
-            <CardsBar />            
-            <Form />
-        </div>
-    );
+  return (
+    <div className="card-edit">
+      <CardsBar />
+      <Form />
+    </div>
+  );
 }
 
-export default EditCard
+export default EditCard;

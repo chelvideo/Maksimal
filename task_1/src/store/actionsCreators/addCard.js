@@ -1,9 +1,9 @@
-import {ADD_CARD} from '../actions/actions';
+import { ADD_CARD } from '../actions/actions';
 
-function addCard(cardDetail) {
-    return { 
-        type: ADD_CARD, 
-    }
+function addCard() {
+  return {
+    type: ADD_CARD,
+  };
 }
 
 export default addCard;

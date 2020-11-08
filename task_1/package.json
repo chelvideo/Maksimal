@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
     "buildDev": "webpack --mode development",
-    "lint": "./node_modules/.bin/eslint ./src",
+    "lint": "./node_modules/.bin/eslint ./src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "chelvideo",
