@@ -1,0 +1,14 @@
+.form-cards {
+    width: 40%;
+    height: 60%;
+    min-height: 500px;
+    min-width: 700px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #41444b;
+    border-radius: 2rem;
+    box-shadow: 0px 0px 27px 6px #0000009e;
+}
+

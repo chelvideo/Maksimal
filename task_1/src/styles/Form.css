@@ -1,0 +1,66 @@
+.form {
+    margin: 20% 5% 5%;
+}
+
+.form__title {
+    font-size: 1.2rem;
+}
+
+.form__label {
+    font-size: 0.7rem;
+    color: #a2a5ae;
+}
+
+.form__line {
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 0;
+    color: #FFF;
+    background: transparent;
+    font-size: 1rem;
+    border: 1px solid transparent;
+}
+
+.input:hover {
+    background: #64646c;;
+    cursor: pointer;
+}
+
+.input:focus {
+    outline: none;
+    background: #64646c;;
+    border-bottom: 1px solid;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+}
+
+.btn__save {
+    width: 60%;
+    height: 35px;
+    height: 2rem;
+    color: #FFF;
+    background-color: #fd435b;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn__save:hover {
+    cursor: pointer;
+    background-color: #e96a7b;
+    transform: scale(1.05);
+    
+}
+
+.form__number:invalid, .form__name:invalid, .form__expiry:invalid, .form__cvv:invalid {
+    border-bottom: 1px solid transparent;
+}

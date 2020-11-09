@@ -1,0 +1,103 @@
+.card-preview {
+    width: 40%;
+    height: 31%;
+    margin-left: 5%;
+    position: relative;
+}
+
+.card-preview__front {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    border-radius: 1rem;
+    background: #fd435b;
+}
+
+.first-line {
+    width: 85%;
+    margin: 15% auto 0;
+    display: flex;
+    align-items: center;
+}
+
+.first-line__chip {
+    width: 40px;
+}
+
+.first-line__nfc {
+    width: 20px;
+    margin-left: 10px;
+}
+
+.second-line {
+    width: 85%;
+    margin: 5% auto 0;
+    display: flex;
+    overflow: hidden;
+    line-height: 1.2rem;
+}
+
+.second-line span {
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.third-line {
+    width: 85%;
+    margin: 8% auto 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    overflow: hidden;
+}
+
+.third-line__name {
+    flex-grow: 2;
+    overflow: hidden;
+}
+
+.third-line__logo-visa {
+    width: 65px;
+    margin-left: 5px;
+}
+
+.card-preview__back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 1rem;
+    left: 20px;
+    top: 20px;
+    background: #64646c;
+    transition: all 0.5s ease-in-out;
+}
+
+.card-preview__back:hover {
+    top:100px;
+}
+
+
+.fourth-line {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    background: #555861;
+    text-align: right;
+}
+
+.fourth-line__label {
+    font-size: 0.7rem;
+    color: #a2a5ae;
+    margin-right: 20%;
+}
+
+.fourth-line__cvv {
+    margin-right: 20%;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
