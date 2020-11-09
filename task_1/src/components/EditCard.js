@@ -3,7 +3,7 @@ import '../styles/EditCard.css';
 import CardsBar from './CardsBar';
 import Form from './Form';
 
-function EditCard(props) {
+function EditCard() {
   return (
     <div className="card-edit">
       <CardsBar />

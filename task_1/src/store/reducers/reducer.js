@@ -18,8 +18,10 @@ function reducer(state, action) {
   switch (action.type) {
     case SAVE_CARD:
       const newCards = state.cards.slice();
+      const { cardImg } = newCards[state.activeCardId];
       newCards[state.activeCardId] = action.cards;
       newCards[state.activeCardId].cardId = state.activeCardId;
+      newCards[state.activeCardId].cardImg = cardImg;
 
       return {
         ...state,
@@ -60,10 +62,17 @@ function reducer(state, action) {
       const lastNumberChar = action.previewNumber.slice(-1).charCodeAt();
       const lastExpiryChar = action.previewExpiry.slice(-1).charCodeAt();
       const lastCVVChar = action.previewCVV.slice(-1).charCodeAt();
-      if (!lastNameChar || ((lastNameChar >= 65 && lastNameChar <= 90) || (lastNameChar >= 97 && lastNameChar <= 122) || lastNameChar == 32 || lastNameChar == 46 || lastNameChar == 45)) name = action.previewName;
-      if (!lastNumberChar || (lastNumberChar >= 48 && lastNumberChar <= 57)) number = action.previewNumber;
+      if (!lastNameChar
+        || ((lastNameChar >= 65 && lastNameChar <= 90)
+        || (lastNameChar >= 97 && lastNameChar <= 122)
+        || lastNameChar === 32
+        || lastNameChar === 46
+        || lastNameChar === 45)) name = action.previewName;
+      if (!lastNumberChar
+        || (lastNumberChar >= 48 && lastNumberChar <= 57)) number = action.previewNumber;
       if (!lastCVVChar || (lastCVVChar >= 48 && lastCVVChar <= 57)) CVV = action.previewCVV;
-      if (!lastExpiryChar || (lastExpiryChar >= 47 && lastExpiryChar <= 57)) expiry = action.previewExpiry;
+      if (!lastExpiryChar
+        || (lastExpiryChar >= 47 && lastExpiryChar <= 57)) expiry = action.previewExpiry;
 
       return {
         ...state,

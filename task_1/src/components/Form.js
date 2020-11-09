@@ -123,7 +123,7 @@ function mapDispatchToProps(dispatch) {
       const formData = new FormData(document.forms.cardDetail);
       const newCard = {
         cardName: formData.get('name'),
-        cardNumber: formData.get('number').replace(/\ /g, ''),
+        cardNumber: formData.get('number').replace(/ /g, ''),
         cardExpiry: formData.get('expiry').replace(/\//g, ''),
         cardCVV: formData.get('cvv'),
       };
@@ -133,7 +133,7 @@ function mapDispatchToProps(dispatch) {
     preview: (e) => {
       const formData = new FormData(document.forms.cardDetail);
       const inputNumber = document.querySelector('.form__number');
-      const card = formData.get('number').replace(/\ /g, '');
+      const card = formData.get('number').replace(/ /g, '');
       if (card.length >= 13 && !checkLuhn(card)) {
         inputNumber.setCustomValidity('Not valid card!');
       } else {
@@ -142,7 +142,7 @@ function mapDispatchToProps(dispatch) {
 
       const newDetail = {
         previewName: formData.get('name'),
-        previewNumber: formData.get('number').replace(/\ /g, ''),
+        previewNumber: formData.get('number').replace(/ /g, ''),
         previewExpiry: formData.get('expiry').replace(/\//g, ''),
         previewCVV: formData.get('cvv'),
       };

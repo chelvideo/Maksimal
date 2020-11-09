@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import '../styles/PreviewCard.css';
 import chipImg from '../assets/chip.png';
 import visaImg from '../assets/visa.png';
@@ -21,7 +22,7 @@ const background = (color) => ({
 
 function PreviewCard(props) {
   const {
-    activeCardId, cards, cardImg, previewName, previewNumber, previewExpiry, previewCVV,
+    activeCardId, cards, previewName, previewNumber, previewExpiry, previewCVV,
   } = props;
   const expiryToStr = previewExpiry ? `${previewExpiry.slice(0, 2)}/${previewExpiry.slice(2)}` : '';
 
@@ -67,5 +68,16 @@ function mapStateToProps(store) {
     previewCVV: store.previewCVV,
   };
 }
+
+/*
+PreviewCard.propTypes = {
+  activeCardId: PropTypes.number,
+  cards: PropTypes.array,
+  previewName: PropTypes.string,
+  previewNumber: PropTypes.string,
+  previewExpiry: PropTypes.string,
+  previewCVV: PropTypes.string,
+};
+*/
 
 export default connect(mapStateToProps, null)(PreviewCard);

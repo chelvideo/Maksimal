@@ -6,7 +6,8 @@ function checkLuhn(value) {
     let digit = parseInt(valueStr.charAt(i), 10);
 
     if (shouldDouble) {
-      if ((digit *= 2) > 9) digit -= 9;
+      digit *= 2;
+      if (digit > 9) digit -= 9;
     }
 
     sum += digit;
