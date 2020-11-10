@@ -1,0 +1,39 @@
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-template-rows: repeat(7, auto);
+  
+}
+
+.calendar__head {
+  grid-column-start: span 7;
+}
+
+.calendar:last-child {
+  color: red;
+}
+
+.calendar--from-right {
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+.day-cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+}
+
+
+
+  #calendar2 tbody td {
+    color: rgb(44, 86, 122);
+  }
+  #calendar2 tbody td:nth-child(n+6), #calendar2 .holiday {
+    color: rgb(231, 140, 92);
+  }
+  #calendar2 tbody td.today {
+    background: rgb(220, 0, 0);
+    color: #fff;
+  }
