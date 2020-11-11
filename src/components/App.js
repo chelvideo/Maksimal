@@ -11,39 +11,41 @@ function App(props) {
   const {isNextSlide, isPrevSlide, direction, curMonth, nextSlide, prevSlide, updateCurMonth, count} = props;
 
   const initialRender = useRef(true);
-
   useEffect(() => {
-
     if (initialRender.current) {
       initialRender.current = false;
     } else {
-      const cal = document.querySelector('.slider__view');
+      const sliderView = document.querySelector('.slider__view');
       switch (direction) {
         case 'from_right':
-          cal.classList.add('slider__view--from-right');
+          sliderView.classList.add('slider__view--from-right');
           break;
         case 'from_left':
-          cal.classList.add('slider__view--from-left');
+          sliderView.classList.add('slider__view--from-left');
           break;
       }
       
       setTimeout(() => {
-        cal.classList.remove('slider__view--from-right');
-        cal.classList.remove('slider__view--from-left');
+        sliderView.classList.remove('slider__view--from-right');
+        sliderView.classList.remove('slider__view--from-left');
         updateCurMonth(curMonth);
       }, 1000)
     }
-},[count])
+  }, [count])
 
+  const leftSlide = {
+    position: 'absolute',
+    left: '-100%',
+  }
   
   return (
     <div className="app">
       <div className="prev-btn" onClick={prevSlide}>◄</div>
         <div className="slider">
           <div className="slider__view">
-            {isPrevSlide && <Calendar date={curMonth - 1} style={{position: 'absolute', left: '-100%'}}/>}
-            <Calendar date={curMonth}/>
-            {isNextSlide && <Calendar date={curMonth + 1}/>}
+            {isPrevSlide && <Calendar curMonth={curMonth - 1} style={leftSlide}/>}
+            <Calendar curMonth={curMonth}/>
+            {isNextSlide && <Calendar curMonth={curMonth + 1}/>}
           </div>
         </div>
       <div className="next-btn" onClick={nextSlide}>►</div>
@@ -58,7 +60,6 @@ function mapStateToProps(store) {
     isPrevSlide: store.isPrevSlide,
     direction: store.direction,
     curMonth: store.curMonth,
-    sliderPos: store.sliderPos,
     count: store.count,
   };
 }
