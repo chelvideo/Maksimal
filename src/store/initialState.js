@@ -3,6 +3,8 @@ const initialState = {
   isPrevSlide: false,
   direction: '',
   curMonth: new Date().getMonth(),
+  daySelected: 0,
+  dayData: [],
   count: 0,
 };
 
