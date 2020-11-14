@@ -5,7 +5,8 @@ const initialState = {
   curMonth: new Date().getMonth(),
   daySelected: 0,
   dayData: [],
-  count: 0,
+  countFlip: 0,
+  isLoad: false,
 };
 
 export default initialState;

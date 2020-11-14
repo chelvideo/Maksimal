@@ -25,6 +25,10 @@
   border: 1px solid black;
 }
 
+.day-cell--top-holiday {
+  background-color: cornflowerblue;
+}
+
 
 
   #calendar2 tbody td {

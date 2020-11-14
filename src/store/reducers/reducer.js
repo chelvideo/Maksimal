@@ -7,16 +7,19 @@ function reducer(state, action) {
       return {
         ...state,
         isNextSlide: true,
-        count: state.count += 1,
+        countFlip: state.countFlip += 1,
         direction: 'from_right',
+        isLoad: true,
+        dayData: [],
       };
 
     case PREV_SLIDE:
       return {
         ...state,
         isPrevSlide: true,
-        count: state.count += 1,
+        countFlip: state.countFlip += 1,
         direction: 'from_left',
+        dayData: [],
       };
 
     case UPDATE_CUR_MONTH:
@@ -34,9 +37,15 @@ function reducer(state, action) {
       };
 
     case SET_DATA:
+      //const newDayData = state.dayData.slice();
+      //newDayData.push(action.dayData)
+      console.log(action);
       return {
         ...state,
-        dayData: action.dayData.slice()
+        dayData: [
+          ...action.dayData.slice(),
+        ],
+        isLoad: action.dayData.filter(item => item.length!=0).[0][0].hasOwnProperty('top') ? false : true,
       };
 
     default: return state;

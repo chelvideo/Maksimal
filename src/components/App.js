@@ -1,14 +1,17 @@
-import React, {useEffect, useRef} from 'react';
-import { connect } from 'react-redux';
+import React, {Fragment, useEffect, useRef} from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import nextSlide from '../store/actionsCreator/nextSlide';
 import prevSlide from '../store/actionsCreator/prevSlide';
 import updateCurMonth from '../store/actionsCreator/updateCurMonth';
 import '../styles/App.css';
 import '../styles/Calendar.css';
 import Calendar from './Calendar';
+import Loader from './Loader';
 
 function App(props) {
-  const {isNextSlide, isPrevSlide, direction, curMonth, nextSlide, prevSlide, updateCurMonth, count} = props;
+  const {isNextSlide, isPrevSlide, direction, curMonth, prevSlide, updateCurMonth, countFlip} = props;
+  const isLoad = useSelector(state => state.isLoad);
+  const dispatch = useDispatch();
 
   const initialRender = useRef(true);
   useEffect(() => {
@@ -31,7 +34,7 @@ function App(props) {
         updateCurMonth(curMonth);
       }, 1000)
     }
-  }, [count])
+  }, [countFlip])
 
   const leftSlide = {
     position: 'absolute',
@@ -39,17 +42,20 @@ function App(props) {
   }
   
   return (
-    <div className="app">
-      <div className="prev-btn" onClick={prevSlide}>◄</div>
-        <div className="slider">
-          <div className="slider__view">
-            {isPrevSlide && <Calendar curMonth={curMonth - 1} style={leftSlide}/>}
-            <Calendar curMonth={curMonth}/>
-            {isNextSlide && <Calendar curMonth={curMonth + 1}/>}
+    <Fragment>
+      <div className="app">
+        <div className="prev-btn" onClick={prevSlide}>◄</div>
+          <div className="slider">
+            <div className="slider__view">
+              {isPrevSlide && <Calendar curMonth={curMonth - 1} style={leftSlide}/>}
+              <Calendar curMonth={curMonth}/>
+              {isNextSlide && <Calendar curMonth={curMonth + 1}/>}
+            </div>
           </div>
-        </div>
-      <div className="next-btn" onClick={nextSlide}>►</div>
-    </div>
+        <div className="next-btn" onClick={() => dispatch(nextSlide(curMonth, 'from_right'))}>►</div>
+      </div>
+      {isLoad && <Loader />}
+    </Fragment>
   );
 }
 
@@ -60,15 +66,13 @@ function mapStateToProps(store) {
     isPrevSlide: store.isPrevSlide,
     direction: store.direction,
     curMonth: store.curMonth,
-    count: store.count,
+    countFlip: store.countFlip,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    nextSlide: () => {
-      dispatch(nextSlide());
-    },
+   
     prevSlide: () => {
       dispatch(prevSlide());
     },
