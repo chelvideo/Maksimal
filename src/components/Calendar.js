@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import clickDay from '../store/actionsCreator/clickDay';
 import '../styles/Calendar.css';
 
@@ -26,6 +27,7 @@ function Calendar(props) {
 
   const daysOfMonth = new Array(daysPerMonth).fill(0).map((item, i) => 
     item = 
+      <Link to='/detail'>
       <div 
         className="day-cell" 
         key={i} 
@@ -33,6 +35,7 @@ function Calendar(props) {
         onClick={() => dispatch(clickDay(curMonth, i+1))}>
           {i + 1}
       </div>
+      </Link>
   )
   
   const endBlankDays = new Array(7 - dayOfWeekLast).fill(
@@ -48,10 +51,14 @@ function Calendar(props) {
     //console.log('use eff ', dayData);
     if (!dayData.length) return;
     for(let i=0; i<4; i += 1) {
-      dayData[i].map((item, index) => {
+      const tops = dayData[i].reduce((prev, item, index) => {
         //console.log('use eff ', item);
-        if (item.top) document.querySelector(`#day${i}`).classList.add('day-cell--top-holiday')
-      })
+        if (item.top) prev = true;
+        return prev;
+      }, false)
+      //console.log(tops);
+      if(tops) document.querySelector(`#day${i}`).classList.add('day-cell--top-holiday')
+      else document.querySelector(`#day${i}`).classList.remove('day-cell--top-holiday')
     }
   },[dayData])
 

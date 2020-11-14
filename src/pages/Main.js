@@ -3,12 +3,13 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import nextSlide from '../store/actionsCreator/nextSlide';
 import prevSlide from '../store/actionsCreator/prevSlide';
 import updateCurMonth from '../store/actionsCreator/updateCurMonth';
-import '../styles/App.css';
+import '../styles/Main.css';
 import '../styles/Calendar.css';
-import Calendar from './Calendar';
-import Loader from './Loader';
+import Calendar from '../components/Calendar';
+import Loader from '../components/Loader';
+import { requestMonthHolydays } from '../store/sagas';
 
-function App(props) {
+function Main(props) {
   const {isNextSlide, isPrevSlide, direction, curMonth, prevSlide, updateCurMonth, countFlip} = props;
   const isLoad = useSelector(state => state.isLoad);
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function App(props) {
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;
+      
     } else {
       const sliderView = document.querySelector('.slider__view');
       switch (direction) {
@@ -52,7 +54,7 @@ function App(props) {
               {isNextSlide && <Calendar curMonth={curMonth + 1}/>}
             </div>
           </div>
-        <div className="next-btn" onClick={() => dispatch(nextSlide(curMonth, 'from_right'))}>►</div>
+        <div className="next-btn" onClick={ () => dispatch(nextSlide(curMonth, 'from_right'))}>►</div>
       </div>
       {isLoad && <Loader />}
     </Fragment>
@@ -82,6 +84,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 

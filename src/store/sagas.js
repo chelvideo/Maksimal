@@ -4,6 +4,31 @@ import { CLICK_DAY, NEXT_SLIDE } from './actions/actions';
 import setData from './actionsCreator/setData';
 import { getDayData } from './selectors';
 
+function* requestDayDetail(action) {
+    console.log(action);
+    let dayData = yield select(getDayData);
+    dayData = dayData.slice();
+    dayData.map(item => item.slice());
+    //console.log(dayData[action.daySelected -1].length);
+
+    for(let i=0; i < dayData[action.daySelected - 1].length; i += 1) {
+        const id = dayData[action.daySelected - 1][i].pageid;
+        const title = dayData[action.daySelected - 1][i].title;
+        //console.log(id);
+        let url = `https://ru.wikipedia.org/w/api.php?format=json&action=query&pageids=${id}&prop=extracts&exintro=1&origin=*`;
+        let resp = yield fetch(url);
+        let data = yield resp.json();
+        dayData[action.daySelected - 1][i].desc = (data.query.pages[id].extract);
+        url = `https://ru.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=thumbnail&pithumbsize=250&titles=${title}&origin=*`;
+        resp = yield fetch(url);
+        data = yield resp.json();
+        //console.log(data);
+        dayData[action.daySelected - 1][i].img = (data.query.pages[id].thumbnail.source);
+        //console.log(typeof dayData[action.daySelected - 1][i].desc)
+    }
+    yield put(setData(dayData));
+}
+
 function* requestDayHolidays(action) {
     //console.log(action);
     const date = new Date(2020, action.curMonth, action.daySelected).toLocaleDateString('ru-RU',{ month: 'long', day: 'numeric'}).replace(' ','_');
@@ -45,18 +70,27 @@ function* requestTopHolydays(daysPerMonth) {
             //console.log(iStart, '       ', top);
         }
     }
-    console.log(dayData);
+    //console.log(dayData);
     yield put(setData(dayData));
 }
 
 
-function* requestMonthHolydays(action) {
+export function* requestMonthHolydays(action={ curMonth: new Date().getMonth() }) {
     //console.log(action);
     const curYear = new Date().getFullYear();
-    const date = action.direction === 'from_right' ? 
-        new Date(curYear, action.curMonth + 1) : new Date(curYear, action.curMonth - 1);
+    let date;
+    switch (action.direction) {
+        case 'from_right':
+            date = new Date(curYear, action.curMonth + 1); 
+            break;
+        case 'from_left':
+            date = new Date(curYear, action.curMonth - 1); 
+            break;
+        default:
+            date = new Date(curYear, action.curMonth); 
+    }
     const daysPerMonth = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
-    //console.log(daysPerMonth);
+    //console.log(date);
     const newData = [];
     for (let i = 1; i<5; i += 1) {
         //console.log(i);
@@ -70,7 +104,7 @@ function* requestMonthHolydays(action) {
 
 function* rootSaga() {
     yield all([
-        yield takeEvery(CLICK_DAY, requestDayHolidays),
+        yield takeEvery(CLICK_DAY, requestDayDetail),
         yield takeEvery(NEXT_SLIDE, requestMonthHolydays),
     ])
   }
