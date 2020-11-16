@@ -6,7 +6,7 @@ const initialState = {
   daySelected: 0,
   dayData: [],
   countFlip: 0,
-  isLoad: false,
+  isLoad: true,
 };
 
 export default initialState;

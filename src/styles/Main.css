@@ -1,12 +1,13 @@
 .app {
-  width: 200px;
+  width: 700px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .slider {
-  width: 154px;
+  width: 520px;
   overflow: hidden;
   position: relative;
 }
@@ -26,6 +27,17 @@
 .slider__view--from-left {
   transition: left 0.5s ease-in-out;
   left: 100%;
+}
+
+.prev-btn, .next-btn {
+  padding: 10px;
+  font-size: 3rem;
+  color: #6e9ffa;;
+}
+
+.prev-btn:hover, .next-btn:hover {
+  cursor: pointer;
+  transform: scale(1.15);
 }
 
 

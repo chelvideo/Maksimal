@@ -1,1 +1,1 @@
-export const getDayData = state => state.dayData
+export const getDayData = (state) => state.dayData;

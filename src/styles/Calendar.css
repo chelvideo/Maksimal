@@ -2,15 +2,31 @@
   display: grid;
   grid-template-columns: repeat(7, auto);
   grid-template-rows: repeat(7, auto);
+  grid-gap: 5px;
+  justify-items: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.calendar a {
+  text-decoration: none;
+}
+
+.calendar a:hover {
+  background-color: #dfeafd;
   
 }
 
-.calendar__head {
+.calendar__title {
   grid-column-start: span 7;
+  height: 60px;
+  text-transform: capitalize; 
 }
 
-.calendar:last-child {
+.calendar__head {
+  font-size: 1.2rem;
   color: red;
+  height: 3rem;
 }
 
 .calendar--from-right {
@@ -20,24 +36,17 @@
 }
 
 .day-cell {
-  width: 20px;
-  height: 20px;
-  border: 1px solid black;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  color: #000;
+  box-sizing: border-box;
 }
 
 .day-cell--top-holiday {
-  background-color: cornflowerblue;
+  background-color:  #e78c5c;
+  border-radius: 50%;
+  color: #FFF;
 }
 
-
-
-  #calendar2 tbody td {
-    color: rgb(44, 86, 122);
-  }
-  #calendar2 tbody td:nth-child(n+6), #calendar2 .holiday {
-    color: rgb(231, 140, 92);
-  }
-  #calendar2 tbody td.today {
-    background: rgb(220, 0, 0);
-    color: #fff;
-  }

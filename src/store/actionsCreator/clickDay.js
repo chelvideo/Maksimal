@@ -4,7 +4,7 @@ function clickDay(month, day) {
   return {
     type: CLICK_DAY,
     daySelected: day,
-    curMonth: month
+    curMonth: month,
   };
 }
 

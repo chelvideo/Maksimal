@@ -1,7 +1,8 @@
-import { NEXT_SLIDE, PREV_SLIDE, UPDATE_CUR_MONTH, CLICK_DAY, SET_DATA } from '../actions/actions';
+import {
+  NEXT_SLIDE, PREV_SLIDE, UPDATE_CUR_MONTH, CLICK_DAY, SET_DATA,
+} from '../actions/actions';
 
 function reducer(state, action) {
-
   switch (action.type) {
     case NEXT_SLIDE:
       return {
@@ -19,6 +20,7 @@ function reducer(state, action) {
         isPrevSlide: true,
         countFlip: state.countFlip += 1,
         direction: 'from_left',
+        isLoad: true,
         dayData: [],
       };
 
@@ -29,23 +31,21 @@ function reducer(state, action) {
         isNextSlide: false,
         isPrevSlide: false,
       };
-    
+
     case CLICK_DAY:
       return {
         ...state,
-        daySelected: action.daySelected
+        daySelected: action.daySelected,
+        isLoad: true,
       };
 
     case SET_DATA:
-      //const newDayData = state.dayData.slice();
-      //newDayData.push(action.dayData)
-      console.log(action);
       return {
         ...state,
         dayData: [
           ...action.dayData.slice(),
         ],
-        isLoad: action.dayData.filter(item => item.length!=0).[0][0].hasOwnProperty('top') ? false : true,
+        isLoad: !action.dayData.filter((item) => item.length != 0)[0][0].hasOwnProperty('isTop'),
       };
 
     default: return state;
