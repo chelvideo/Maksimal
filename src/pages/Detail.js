@@ -1,9 +1,8 @@
-import React, { Fragment, useEffect, useRef } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Parser from 'html-react-parser';
 import Loader from '../components/Loader';
-import '../styles/Detail.css';
+import '../styles/Detail.scss';
 
 function holidayList() {
   const dayData = useSelector((state) => state.dayData);
@@ -37,6 +36,7 @@ function Detail() {
     <div className="detail">
       <h2 className="title">
         Праздники
+        {' '}
         {date}
       </h2>
       {holidayList()}

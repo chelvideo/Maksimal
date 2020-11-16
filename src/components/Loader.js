@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import clickDay from '../store/actionsCreator/clickDay';
-import '../styles/Loader.css';
+import '../styles/Loader.scss';
 
 function Loader(props) {
   return (

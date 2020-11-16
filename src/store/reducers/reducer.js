@@ -12,6 +12,7 @@ function reducer(state, action) {
         direction: 'from_right',
         isLoad: true,
         dayData: [],
+        daySelected: 0,
       };
 
     case PREV_SLIDE:
@@ -22,17 +23,21 @@ function reducer(state, action) {
         direction: 'from_left',
         isLoad: true,
         dayData: [],
+        daySelected: 0,
       };
 
     case UPDATE_CUR_MONTH:
+      const month = state.direction === 'from_right' ? action.curMonth + 1 : action.curMonth - 1;
+      sessionStorage.setItem('calendar-month', month);
       return {
         ...state,
-        curMonth: state.direction === 'from_right' ? action.curMonth + 1 : action.curMonth - 1,
+        curMonth: month,
         isNextSlide: false,
         isPrevSlide: false,
       };
 
     case CLICK_DAY:
+      sessionStorage.setItem('calendar-day', action.daySelected);
       return {
         ...state,
         daySelected: action.daySelected,
@@ -40,6 +45,7 @@ function reducer(state, action) {
       };
 
     case SET_DATA:
+      sessionStorage.setItem('calendar-data', JSON.stringify(action.dayData));
       return {
         ...state,
         dayData: [

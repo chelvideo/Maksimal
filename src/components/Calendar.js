@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import clickDay from '../store/actionsCreator/clickDay';
-import '../styles/Calendar.css';
+import '../styles/Calendar.scss';
 
 function Calendar(props) {
   const { curMonth, style } = props;
@@ -34,7 +34,11 @@ function Calendar(props) {
 
   const endBlankDays = new Array(7 - dayOfWeekLast).fill(0).map((item, i) => <div className="day-cell" key={i + 200} />);
 
-  const fillEndCount = (dayOfWeekFirst - 1 + daysPerMonth + 7 - dayOfWeekLast) == 35 ? 7 : 0;
+  const endCount = (dayOfWeekFirst - 1 + daysPerMonth + 7 - dayOfWeekLast);
+  let fillEndCount;
+  if (endCount === 28) fillEndCount = 14;
+  else if (endCount === 35) fillEndCount = 7;
+  else fillEndCount = 0;
   const fillEnd = new Array(fillEndCount).fill(0).map((item, i) => <div className="day-cell" key={i + 300} />);
   const title = new Date(curYear, curMonth).toLocaleDateString('ru-RU', {
     year: 'numeric',

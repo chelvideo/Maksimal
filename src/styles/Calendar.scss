@@ -1,0 +1,53 @@
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-template-rows: repeat(7, auto);
+  grid-gap: 5px;
+  justify-items: center;
+  align-items: center;
+  font-size: 2rem;
+
+  & a {
+    text-decoration: none;
+
+    &:hover {
+      background-color: #dfeafd;
+    }
+  }
+
+  &__title {
+    grid-column-start: span 7;
+    height: 60px;
+    text-transform: capitalize; 
+  }
+
+  &__head {
+    font-size: 1.2rem;
+    color: red;
+    height: 3rem;
+  }
+
+  &--from-right {
+    position: absolute;
+    top: 0;
+    left: 100%;
+  }
+}
+
+.day-cell {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  color: #000;
+  box-sizing: border-box;
+
+  &--top-holiday {
+    background-color:  #e78c5c;
+    border-radius: 50%;
+    color: #FFF;
+  }
+}
+
+
+

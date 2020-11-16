@@ -10,29 +10,28 @@
   width: 520px;
   overflow: hidden;
   position: relative;
-}
 
-.slider__view {
-  left: 0;
-  display: flex;
-  position: relative;
-  
-}
-
-.slider__view--from-right {
-  transition: left 0.5s ease-in-out;
-  left: -100%;
-}
-
-.slider__view--from-left {
-  transition: left 0.5s ease-in-out;
-  left: 100%;
+  &__view {
+    left: 0;
+    display: flex;
+    position: relative;
+    
+    &--from-right {
+      transition: left 0.5s ease-in-out;
+      left: -100%;
+    }
+    
+    &--from-left {
+      transition: left 0.5s ease-in-out;
+      left: 100%;
+    }
+  }
 }
 
 .prev-btn, .next-btn {
   padding: 10px;
   font-size: 3rem;
-  color: #6e9ffa;;
+  color: #6e9ffa;
 }
 
 .prev-btn:hover, .next-btn:hover {

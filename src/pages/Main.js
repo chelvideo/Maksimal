@@ -3,7 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 import nextSlide from '../store/actionsCreator/nextSlide';
 import prevSlide from '../store/actionsCreator/prevSlide';
 import updateCurMonth from '../store/actionsCreator/updateCurMonth';
-import '../styles/Main.css';
+import '../styles/Main.scss';
 import Calendar from '../components/Calendar';
 import Loader from '../components/Loader';
 

@@ -5,7 +5,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Detail from './pages/Detail.js';
 import Main from './pages/Main.js';
 import store from './store/store';
-import './styles/index.css';
+import './styles/index.scss';
 
 ReactDOM.render(
   <HashRouter>

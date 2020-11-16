@@ -1,0 +1,43 @@
+.detail {
+    width: 100vw;
+}
+
+.title {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.card {
+    width: 70%;
+    margin: 10px auto;
+    background: #dfeafd;
+    padding: 10px;
+    border-radius: 10px;
+
+    &:hover {
+        background: #b8cff8;
+    }
+
+    & a {
+        text-decoration: none;
+        color: #000;
+    }
+    
+    & h3 {
+        text-align: center;
+    }
+    
+    & img {
+        border-radius: 5px;
+        margin-left: 10px;
+    }
+    
+    &__detail {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+
+
